@@ -361,15 +361,15 @@ See `prettify-symbols-compose-predicate'."
     "bool"
     "str" "char"))
 
-(defconst rust-number-with-type
+(defconst rust-number-with-optional-type
   (eval-when-compile
     (concat
-     "\\_<\\(?:0[box]?\\|[1-9]\\)[[:digit:]a-fA-F_.]*\\(?:[eE][+-]?[[:digit:]_]\\)?"
+     "\\_<\\(?:0[box]?\\|[1-9]\\)[[:xdigit:]_?]*\\(?:[eE][+-]?[[:digit:]_]\\)?"
      (regexp-opt '("u8" "i8" "u16" "i16" "u32" "i32" "u64" "i64"
                    "u128" "i128" "usize" "isize" "f32" "f64")
                  t)
-     "\\_>"))
-  "Regular expression matching a number with a type suffix.")
+     "?\\_>"))
+  "Regular expression matching a number with optional type suffix.")
 
 (defvar rust-builtin-formatting-macros
   '("eprint"
@@ -480,11 +480,9 @@ Does not match type annotations of the form \"foo::<\"."
      ("\\?" . 'rust-question-mark)
      ("\\(&+\\)\\(?:'\\(?:\\<\\|_\\)\\|\\<\\|[[({:*_|]\\)"
       1 'rust-ampersand-face)
-     ;; Numbers with type suffix
-     (,rust-number-with-type 1 font-lock-type-face)
 
-     ;; Hexadecimal literals
-     (,(rust-re-grab "0x[[:xdigit:]]*") 1 font-lock-constant-face)
+     ;; Numbers with type suffix
+     (,rust-number-with-optional-type 0 font-lock-type-face)
      )
 
    ;; Ensure we highlight `Foo` in `struct Foo` as a type.
