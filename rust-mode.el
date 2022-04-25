@@ -482,6 +482,9 @@ Does not match type annotations of the form \"foo::<\"."
       1 'rust-ampersand-face)
      ;; Numbers with type suffix
      (,rust-number-with-type 1 font-lock-type-face)
+
+     ;; Hexadecimal literals
+     (,(rust-re-grab "0x[[:xdigit:]]*") 1 font-lock-constant-face)
      )
 
    ;; Ensure we highlight `Foo` in `struct Foo` as a type.
