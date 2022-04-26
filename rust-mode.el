@@ -364,7 +364,7 @@ See `prettify-symbols-compose-predicate'."
 (defconst rust-number-with-optional-type
   (eval-when-compile
     (concat
-     "\\_<\\(?:0[box]?\\|[1-9]\\)[[:xdigit:]_?]*\\(?:[eE][+-]?[[:digit:]_]\\)?"
+     "\\_<\\(?:0[box]?\\|[1-9]?\\)[[:punct:]]?[[:xdigit:]_?]*\\(?:[eE][+-]?[[:digit:]_]\\)?"
      (regexp-opt '("u8" "i8" "u16" "i16" "u32" "i32" "u64" "i64"
                    "u128" "i128" "usize" "isize" "f32" "f64")
                  t)

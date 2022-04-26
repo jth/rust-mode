@@ -1307,34 +1307,34 @@ list of substrings of `STR' each followed by its face."
 (ert-deftest font-lock-number-with-type ()
   (rust-test-font-lock
    "-123i32"
-   '("i32" font-lock-type-face))
+   '("123i32" font-lock-type-face))
   (rust-test-font-lock
    "123u32"
-   '("u32" font-lock-type-face))
+   '("123u32" font-lock-type-face))
   (rust-test-font-lock
    "123_123_u32"
-   '("u32" font-lock-type-face))
+   '("123_123_u32" font-lock-type-face))
   (rust-test-font-lock
    "0xff_u8"
-   '("u8" font-lock-type-face))
+   '("0xff_u8" font-lock-type-face))
   (rust-test-font-lock
    "0b1111_1111_1001_0000i64"
-   '("i64" font-lock-type-face))
+   '("0b1111_1111_1001_0000i64" font-lock-type-face))
   (rust-test-font-lock
    "0usize"
-   '("usize" font-lock-type-face))
+   '("0usize" font-lock-type-face))
   (rust-test-font-lock
    "123.0f64 + 1."
-   '("f64" font-lock-type-face))
+   '("123" font-lock-type-face "0f64" font-lock-type-face "1" font-lock-type-face))
   (rust-test-font-lock
    "0.1f32"
-   '("f32" font-lock-type-face))
+   '("0.1f32" font-lock-type-face))
   (rust-test-font-lock
    "12E+99_f64"
-   '("f64" font-lock-type-face))
+   '("12E+99_f64" font-lock-type-face))
   (rust-test-font-lock
    "5f32"
-   '("f32" font-lock-type-face))
+   '("5f32" font-lock-type-face))
   (rust-test-font-lock
    "0x5i32"
    '("i32" font-lock-type-face))
